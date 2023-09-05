@@ -25,7 +25,7 @@ int _strlen(char *str)
  * @filename: file's name
  * @text_content: content to write
  *
- * Return: 1-success 0-failure
+ * Return: 1 on success and -1 on failure
  */
 
 int create_file(const char *filename, char *text_content)
@@ -41,8 +41,5 @@ int create_file(const char *filename, char *text_content)
 	if (l)
 		nbr_bytes = write(f, text_content, l);
 	close(f);
-	if (nbr_bytes == l)
-		return (1);
-	else
-		return (-1);
+	return (nbr_bytes == l ? 1 : -1);
 }

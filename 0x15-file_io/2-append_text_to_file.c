@@ -27,10 +27,10 @@ int _strlen(char *str)
  * @filename: file's name
  * @text_content: content to write
  *
- * Return: 1-success 0-failure
+ * Return: 1 on success and -1 on failure
  */
 
-appen_text_to_file(const char *filename, char *text_content)
+int append_text_to_file(const char *filename, char *text_content)
 {
 	int f;
 	ssize_t nbr_bytes, l = _strlen(text_content);
@@ -38,13 +38,6 @@ appen_text_to_file(const char *filename, char *text_content)
 	if (!filename)
 		return (-1);
 	f = open(filename, O_WRONLY | O_APPEND);
-
-	int f;
-	ssize_t nbr_bytes, l = _strlen(text_content);
-
-	if (!filename)
-		return (-1);
-	f = open(filename, O_WRONLY | O_CREAT | O_TRUNC, S_IRUSR | S8IWUSR);
 	if (f == -1)
 		return (-1);
 	if (l)
@@ -52,5 +45,6 @@ appen_text_to_file(const char *filename, char *text_content)
 	close(f);
 	if (nbr_bytes == l)
 		return (1);
-	return (-1);
+	else
+		return (-1);
 }
