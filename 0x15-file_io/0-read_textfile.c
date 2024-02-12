@@ -22,10 +22,10 @@ ssize_t read_textfile(const char *filename, size_t letters)
 	if (fildes == -1)
 		return (0);
 	nbr_bytes = read(fildes, buf, letters);
-	nbr_bytes = write(STDOUT_FILENO, buf, bytes);
-	if (nbr_bytes == -1 || nbr_bytes != letters)
+	nbr_bytes = write(STDOUT_FILENO, buf, nbr_bytes);
+	if (nbr_bytes == -1)
 		return (0);
 	close(fildes);
 	free(buf);
-	return (bytes);
+	return (nbr_bytes);
 }
