@@ -11,16 +11,17 @@
 int create_file(const char *filename, char *text_content)
 {
 	int fildes;
-	ssize_t nbr_bytes = 0, strlen = 0;
+	ssize_t nbr_bytes = 0;
+	int strlen = 0;
 
 	if (!filename)
 		return (-1);
 	if (text_content)
 	{
-		while (*text_content++)
+		for (strlen = 0; text_content[strlen];)
 			strlen++;
 	}
-	fildes = open(filename, O_TRUNC | O_CREAT | O_WRONLY, S_IWUSR | S_IRUSR);
+	fildes = open(filename, O_TRUNC | O_CREAT | O_WRONLY, 0600);
 	if (fildes == -1)
 		return (-1);
 	nbr_bytes = write(fildes, text_content, strlen);
