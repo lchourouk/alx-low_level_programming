@@ -21,7 +21,7 @@ int create_file(const char *filename, char *text_content)
 		for (strlen = 0; text_content[strlen];)
 			strlen++;
 	}
-	fildes = open(filename, O_TRUNC | O_CREAT | O_WRONLY, 0600);
+	filde = open(filename, O_TRUNC | O_CREAT | O_WRONLY, 0600);
 	if (fildes == -1)
 		return (-1);
 	nbr_bytes = write(fildes, text_content, strlen);
